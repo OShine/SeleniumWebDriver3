@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="TestNgSeleniumSuite" parallel="false">
+<suite name="TestNgSeleniumSuite" verbose="1">
     <test name="TestNGSeleniumExample">
         <classes>
-            <class
-            name="TestNGSeleniumExample" />
+            <class name="TestNGSeleniumExample" />
         </classes>
     </test>
 </suite>
