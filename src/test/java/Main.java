@@ -19,28 +19,17 @@ public class Main {
     @BeforeMethod
     public void beforeMethod() {
 
-//        FirefoxProfile profile = new FirefoxProfile();
-//        profile.setAcceptUntrustedCertificates(true);
-//        profile.setAssumeUntrustedCertificateIssuer(true);
-//        driver = new FirefoxDriver(profile);
-//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//        driver.get(baseUrl);
-
         ProfilesIni profile = new ProfilesIni();
-        FirefoxProfile ffprofile = profile.getProfile("QA");
-        ffprofile.setAcceptUntrustedCertificates(true);
-        ffprofile.setAssumeUntrustedCertificateIssuer(false);
+        FirefoxProfile ffprofile = profile.getProfile("certificateIssue");
         driver = new FirefoxDriver(ffprofile);
-        driver.get(baseUrl);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     }
 
     @Test
     public void main() {
 
-
-       // WebElement searchButton = driver.findElement(By.cssSelector("[name=\"btnK\"]"));
-       // new WebDriverWait(driver, 15, 2300).until(ExpectedConditions.visibilityOf(searchButton));
+        driver.get(baseUrl);
 
     }
 
