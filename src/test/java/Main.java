@@ -1,6 +1,7 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -18,11 +19,18 @@ public class Main {
     @BeforeMethod
     public void beforeMethod() {
 
-        FirefoxProfile profile = new FirefoxProfile();
-        profile.setAcceptUntrustedCertificates(true);
-        profile.setAssumeUntrustedCertificateIssuer(true);
-        driver = new FirefoxDriver(profile);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        FirefoxProfile profile = new FirefoxProfile();
+//        profile.setAcceptUntrustedCertificates(true);
+//        profile.setAssumeUntrustedCertificateIssuer(true);
+//        driver = new FirefoxDriver(profile);
+//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        driver.get(baseUrl);
+
+        ProfilesIni profile = new ProfilesIni();
+        FirefoxProfile ffprofile = profile.getProfile("QA");
+        ffprofile.setAcceptUntrustedCertificates(true);
+        ffprofile.setAssumeUntrustedCertificateIssuer(false);
+        driver = new FirefoxDriver(ffprofile);
         driver.get(baseUrl);
 
     }
