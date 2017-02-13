@@ -1,11 +1,9 @@
-import org.junit.rules.Timeout;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
-import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -44,7 +42,7 @@ public class Main {
         WebElement loginElement = driver.findElement(By.cssSelector("#SubmitButton"));
         loginElement.click();
         WebElement signElement = driver.findElement(By.cssSelector(".sign-out-span"));
-        
+
         Assert.assertTrue(signElement.getText().contains("Sign Out"));
 
     }
