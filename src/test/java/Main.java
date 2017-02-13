@@ -36,15 +36,15 @@ public class Main {
 
         driver.get(baseUrl);
         WebElement usernameElement = driver.findElement(By.cssSelector("#Username"));
-        WebElement passwordElement = driver.findElement(By.cssSelector("#Password"));
-        WebElement rememberElement = driver.findElement(By.cssSelector(".remember-chBox"));
-        WebElement loginElement = driver.findElement(By.cssSelector("#SubmitButton"));
-        WebElement signElement = driver.findElement(By.cssSelector(".sign-out-span"));
-
         usernameElement.sendKeys("EugenBorisik");
+        WebElement passwordElement = driver.findElement(By.cssSelector("#Password"));
         passwordElement.sendKeys("qwerty12345");
+        WebElement rememberElement = driver.findElement(By.cssSelector(".remember-chBox"));
         rememberElement.click();
+        WebElement loginElement = driver.findElement(By.cssSelector("#SubmitButton"));
         loginElement.click();
+        WebElement signElement = driver.findElement(By.cssSelector(".sign-out-span"));
+        
         Assert.assertTrue(signElement.getText().contains("Sign Out"));
 
     }
