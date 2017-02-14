@@ -39,7 +39,16 @@ public class Main {
         loginElement.click();
         WebElement signElement = driver.findElement(By.cssSelector(".sign-out-span"));
 
-        Assert.assertTrue(signElement.getText().contains("Sign Out"));
+ //       Assert.assertTrue(signElement.getText().contains("Sign Out"));
+
+        WebElement globalSearchElement = driver.findElement(By.className("global-search"));
+        globalSearchElement.sendKeys("Element was located");
+        WebElement searchButtonElement = driver.findElement(By.id("individualMenu"));
+        searchButtonElement.isDisplayed();
+        WebElement managementUSAElement = driver.findElement(By.partialLinkText("Management USA"));
+        managementUSAElement.click();
+
+
 
     }
 
