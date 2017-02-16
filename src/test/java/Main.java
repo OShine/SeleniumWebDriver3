@@ -31,7 +31,7 @@ public class Main {
     public void main() {
 
         driver.get(baseUrl);
-        
+
         // first task
         WebElement usernameElement = driver.findElement(By.cssSelector("#Username"));
         usernameElement.sendKeys("EugenBorisik");
@@ -49,14 +49,11 @@ public class Main {
         List<WebElement> tagNameElements = driver.findElements(By.tagName("a"));
         WebElement linkTextElement = driver.findElement(By.linkText("csi.EugenBorisik"));
         WebElement xPathElement = driver.findElement(By.xpath("//div[@class='defaultWidgetYScrolling']"));
+        // By.name locator is not available for this page
 
         // main part of test
         WebElement signElement = driver.findElement(By.cssSelector(".sign-out-span"));
         Assert.assertTrue(signElement.getText().contains("Sign Out"));
-
-        // name locator is not available for this page
-
-
 
     }
 
