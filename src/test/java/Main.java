@@ -8,6 +8,8 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
@@ -37,16 +39,18 @@ public class Main {
         rememberElement.click();
         WebElement loginElement = driver.findElement(By.cssSelector("#SubmitButton"));
         loginElement.click();
+
+        WebElement classNameElement = driver.findElement(By.className("global-search"));
+        WebElement searchByIdElement = driver.findElement(By.id("individualMenu"));
+        WebElement partialLinkTextElement = driver.findElement(By.partialLinkText("Management USA"));
+        List<WebElement> tagNameElements = driver.findElements(By.tagName("a"));
+        WebElement linkTextElement = driver.findElement(By.linkText("csi.EugenBorisik"));
+        WebElement xPathElement = driver.findElement(By.xpath("//div[@class='defaultWidgetYScrolling']"));
+
         WebElement signElement = driver.findElement(By.cssSelector(".sign-out-span"));
+        Assert.assertTrue(signElement.getText().contains("Sign Out"));
 
- //       Assert.assertTrue(signElement.getText().contains("Sign Out"));
-
-        WebElement globalSearchElement = driver.findElement(By.className("global-search"));
-        globalSearchElement.sendKeys("Element was located");
-        WebElement searchButtonElement = driver.findElement(By.id("individualMenu"));
-        searchButtonElement.isDisplayed();
-        WebElement managementUSAElement = driver.findElement(By.partialLinkText("Management USA"));
-        managementUSAElement.click();
+        // name locator is not available for this page
 
 
 
