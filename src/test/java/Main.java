@@ -31,6 +31,8 @@ public class Main {
     public void main() {
 
         driver.get(baseUrl);
+        
+        // first task
         WebElement usernameElement = driver.findElement(By.cssSelector("#Username"));
         usernameElement.sendKeys("EugenBorisik");
         WebElement passwordElement = driver.findElement(By.cssSelector("#Password"));
@@ -40,6 +42,7 @@ public class Main {
         WebElement loginElement = driver.findElement(By.cssSelector("#SubmitButton"));
         loginElement.click();
 
+        // second task
         WebElement classNameElement = driver.findElement(By.className("global-search"));
         WebElement searchByIdElement = driver.findElement(By.id("individualMenu"));
         WebElement partialLinkTextElement = driver.findElement(By.partialLinkText("Management USA"));
@@ -47,6 +50,7 @@ public class Main {
         WebElement linkTextElement = driver.findElement(By.linkText("csi.EugenBorisik"));
         WebElement xPathElement = driver.findElement(By.xpath("//div[@class='defaultWidgetYScrolling']"));
 
+        // main part of test
         WebElement signElement = driver.findElement(By.cssSelector(".sign-out-span"));
         Assert.assertTrue(signElement.getText().contains("Sign Out"));
 
