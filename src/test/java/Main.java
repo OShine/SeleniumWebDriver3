@@ -26,7 +26,7 @@ public class Main {
     public void beforeMethod() {
 
         ProfilesIni profile = new ProfilesIni();
-        FirefoxProfile ffprofile = profile.getProfile("certificateIssue");
+        FirefoxProfile ffprofile = profile.getProfile("default");
         driver = new FirefoxDriver(ffprofile);
 
         //Task #5.1 Implicit Wait
