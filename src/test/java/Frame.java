@@ -41,11 +41,13 @@ public class Frame {
         WebElement iFrameElement = driver.findElement(By.id("mce_0_ifr"));
         driver.switchTo().frame(iFrameElement);
 
-        WebElement boardOnFrame = driver.findElement(By.cssSelector("#tinymce>p>span"));
-        boardOnFrame.sendKeys("– Hello \n" + "<b>world!</b>");
+        WebElement boardOnFrame = driver.findElement(By.xpath(".//*[@id='tinymce']/p"));
+        boardOnFrame.clear();
+        boardOnFrame.click();
+        boardOnFrame.sendKeys("- Hello <strong>world</strong>!");
 
-        WebElement boardAssert = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#tinymce>p>span"))); // Task 4.3
-        Assert.assertTrue(boardAssert.getText().contains("– Hello \n" + "<b>world!</b>"));
+        WebElement boardAssert = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#tinymce>p"))); // Task 4.3
+        Assert.assertTrue(boardAssert.getText().contains("- Hello <strong>world</strong>!"));
 
     }
 
