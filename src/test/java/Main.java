@@ -29,7 +29,7 @@ public class Main {
         FirefoxProfile ffprofile = profile.getProfile("default");
         driver = new FirefoxDriver(ffprofile);
 
-        //Task #5.1 Implicit Wait
+        //Task #4.1 Implicit Wait
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     }
@@ -49,7 +49,7 @@ public class Main {
         //WebElement rememberElement = driver.findElement(By.cssSelector(".remember-chBox"));
         //rememberElement.click();
 
-        Thread.sleep(2000); // Task 5.2  Thread.sleep - это третий тип ожидания. Первый вид - Явное (Impliced) и неявное (Explited) ожидание. Второй вид - кастомное ожидание.
+        Thread.sleep(2000); // Task 4.2  Thread.sleep - это третий тип ожидания. Первый вид - Явное (Impliced) и неявное (Explited) ожидание. Второй вид - кастомное ожидание.
 
         WebElement loginElement = driver.findElement(By.cssSelector("#SubmitButton"));
         loginElement.click();
@@ -65,13 +65,13 @@ public class Main {
 
         // main part of test
         //WebElement signElement = driver.findElement(By.cssSelector(".sign-out-span"));
-        WebElement signElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".sign-out-span"))); // Task 5.3
+        WebElement signElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".sign-out-span"))); // Task 4.3
         Assert.assertTrue(signElement.getText().contains("Sign Out"));
 
     }
 
 
-    //Task #5.4 Implicit Wait
+    //Task #4.4 Implicit Wait
     @Test(enabled = false)
     public void secondCase() throws InterruptedException {
 
@@ -93,7 +93,7 @@ public class Main {
 
     }
 
-    //Task #5.4d    Go to office tab, wait for "Search by office" input to appear
+    //Task #4.4d    Go to office tab, wait for "Search by office" input to appear
     @Test
     public void thirdCase() throws InterruptedException {
 
