@@ -44,10 +44,20 @@ public class Frame {
         WebElement boardOnFrame = driver.findElement(By.xpath(".//*[@id='tinymce']/p"));
         boardOnFrame.clear();
         boardOnFrame.click();
-        boardOnFrame.sendKeys("- Hello <strong>world</strong>!");
+        boardOnFrame.sendKeys("- Hello");
+
+        driver.switchTo().defaultContent();
+
+        WebElement boltButton = driver.findElement(By.cssSelector(".mce-i-bold"));
+        boltButton.click();
+
+        driver.switchTo().frame(iFrameElement);
+
+        boardOnFrame.click();
+        boardOnFrame.sendKeys(" world!");
 
         WebElement boardAssert = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#tinymce>p"))); // Task 4.3
-        Assert.assertTrue(boardAssert.getText().contains("- Hello <strong>world</strong>!"));
+        Assert.assertTrue(boardAssert.getText().contains("- Hello world"));
 
     }
 
