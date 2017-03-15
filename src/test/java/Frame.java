@@ -57,7 +57,10 @@ public class Frame {
         boardOnFrame.sendKeys("world!");
 
         WebElement boardAssert = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#tinymce>p"))); // Task 4.3
-        Assert.assertTrue(boardAssert.getText().contains("- Hello world"));
+        Assert.assertEquals(boardAssert.getText(), "- Hello \uFEFFworld!");
+
+        WebElement boardStrongAssert = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#_mce_caret>strong"))); // Task 4.3
+        Assert.assertEquals(boardStrongAssert.getText(),"world!");
 
     }
 
