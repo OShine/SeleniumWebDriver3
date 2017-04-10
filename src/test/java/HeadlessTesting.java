@@ -3,8 +3,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -17,7 +15,16 @@ import java.util.concurrent.TimeUnit;
 public class HeadlessTesting {
 
     private WebDriver driver;
-    private String baseUrl = "https://192.168.100.26/";
+    private static final String BASE_URL = "https://mail.ru";
+    private static final String USERNAME = "seleniumtests10@mail.ru";
+    private static final String PASSWORD = "060788avavav";
+    private static final By MAILBOX_LOGIN = By.id("mailbox__login");
+    private static final By MAILBOX_PASSWORD = By.id("mailbox__password");
+    private static final By MAILBOX_AUTH_BUTTON = By.id("mailbox__auth__button");
+    private static final By COMPOSE_BUTTON = By.cssSelector("[data-name=\"compose\"]>span");
+    private static final By LOGOUT_BUTTON = By.cssSelector("#PH_logoutLink");
+    private static final String COMPOSE_BUTTON_TEXT = "Написать письмо";
+    private static final String AUTH_BUTTON_TEXT = "Войти";
 
     @BeforeMethod
     public void beforeMethod() {
@@ -30,31 +37,27 @@ public class HeadlessTesting {
 
     }
 
-    @Test(enabled = false)
+    @Test
     public void Headless() throws InterruptedException {
 
-        driver.get(baseUrl);
+        driver.get(BASE_URL);
 
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-
-        WebElement usernameElement = driver.findElement(By.cssSelector("#Username"));
-        usernameElement.sendKeys("EugenBorisik");
-        WebElement passwordElement = driver.findElement(By.cssSelector("#Password"));
-        passwordElement.sendKeys("qwerty12345");
-        WebElement loginElement = driver.findElement(By.cssSelector("#SubmitButton"));
+        WebElement usernameElement = driver.findElement(MAILBOX_LOGIN);
+        usernameElement.sendKeys(USERNAME);
+        WebElement passwordElement = driver.findElement(MAILBOX_PASSWORD);
+        passwordElement.sendKeys(PASSWORD);
+        WebElement loginElement = driver.findElement(MAILBOX_AUTH_BUTTON);
         loginElement.click();
-
-        WebElement signElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".sign-out-span")));
 
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         // Now you can do whatever you need to do with it, for example copy somewhere
         try {
-            FileUtils.copyFile(scrFile, new File("c:\\tmp\\screenshot.png"));
+            FileUtils.copyFile(scrFile, new File("c:\\tmp\\screenshotHeadless.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Assert.assertTrue(signElement.getText().contains("Sign Out"));
+        Assert.assertEquals(driver.findElement(COMPOSE_BUTTON).getText(), COMPOSE_BUTTON_TEXT);
     }
 
     @AfterMethod

@@ -5,8 +5,6 @@ import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,10 +14,20 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class JS {
+public class phantomJS {
 
     private WebDriver driverJS;
-    private String baseUrl = "https://192.168.100.26/";
+
+    private static final String BASE_URL = "https://mail.ru";
+    private static final String USERNAME = "seleniumtests10@mail.ru";
+    private static final String PASSWORD = "060788avavav";
+    private static final By MAILBOX_LOGIN = By.id("mailbox__login");
+    private static final By MAILBOX_PASSWORD = By.id("mailbox__password");
+    private static final By MAILBOX_AUTH_BUTTON = By.id("mailbox__auth__button");
+    private static final By COMPOSE_BUTTON = By.cssSelector("[data-name=\"compose\"]>span");
+    private static final By LOGOUT_BUTTON = By.cssSelector("#PH_logoutLink");
+    private static final String COMPOSE_BUTTON_TEXT = "Написать письмо";
+    private static final String AUTH_BUTTON_TEXT = "Войти";
 
     @BeforeMethod
     public void beforeMethod() {
@@ -36,20 +44,16 @@ public class JS {
     }
 
     @Test
-    public void HtmlUnit() throws Exception {
+    public void phantomJS() throws Exception {
 
-        driverJS.get(baseUrl);
+        driverJS.get(BASE_URL);
 
-        WebDriverWait wait = new WebDriverWait(driverJS, 10);
-
-        WebElement usernameElement = driverJS.findElement(By.cssSelector("#Username"));
-        usernameElement.sendKeys("EugenBorisik");
-        WebElement passwordElement = driverJS.findElement(By.cssSelector("#Password"));
-        passwordElement.sendKeys("qwerty12345");
-        WebElement loginElement = driverJS.findElement(By.cssSelector("#SubmitButton"));
+        WebElement usernameElement = driverJS.findElement(MAILBOX_LOGIN);
+        usernameElement.sendKeys(USERNAME);
+        WebElement passwordElement = driverJS.findElement(MAILBOX_PASSWORD);
+        passwordElement.sendKeys(PASSWORD);
+        WebElement loginElement = driverJS.findElement(MAILBOX_AUTH_BUTTON);
         loginElement.click();
-
-        WebElement signElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".sign-out-span")));
 
         File scrFile = ((TakesScreenshot)driverJS).getScreenshotAs(OutputType.FILE);
         // Now you can do whatever you need to do with it, for example copy somewhere
@@ -59,9 +63,8 @@ public class JS {
             e.printStackTrace();
         }
 
-        Assert.assertTrue(signElement.getText().contains("Sign Out"));
+        Assert.assertEquals(driverJS.findElement(COMPOSE_BUTTON).getText(), COMPOSE_BUTTON_TEXT);
     }
-
 
     @AfterMethod
     public void tearDown() {
