@@ -1,16 +1,13 @@
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlElement;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.File;
 import java.io.IOException;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class HtmlUnitDriver {
 
-    private WebClient webClient;
     private static final String BASE_URL = "https://mail.ru";
     private static final String USERNAME = "seleniumtests10@mail.ru";
     private static final String PASSWORD = "060788avavav";
@@ -22,22 +19,21 @@ public class HtmlUnitDriver {
     private static final String COMPOSE_BUTTON_TEXT = "Написать письмо";
     private static final String AUTH_BUTTON_TEXT = "Войти";
 
-
     @Test
     public void HtmlUnitDriver() throws Exception {
 
-        webClient = new WebClient();
-        HtmlPage page = webClient.getPage(BASE_URL);
+        WebDriver driver = new HtmlUnitDriver();
 
-        HtmlElement usernameElement = (HtmlElement) page.getElementById(String.valueOf(MAILBOX_LOGIN));
-        usernameElement.setNodeValue(USERNAME);
-        HtmlElement passwordElement = (HtmlElement) page.getElementById(String.valueOf(MAILBOX_PASSWORD));
-        passwordElement.setNodeValue(PASSWORD);
+        driver.get(BASE_URL);
 
-        HtmlElement loginElement = (HtmlElement) page.getElementById(String.valueOf(MAILBOX_AUTH_BUTTON));
+        WebElement usernameElement = driver.findElement(MAILBOX_LOGIN);
+        usernameElement.sendKeys(USERNAME);
+        WebElement passwordElement = driver.findElement(MAILBOX_PASSWORD);
+        passwordElement.sendKeys(PASSWORD);
+        WebElement loginElement = driver.findElement(MAILBOX_AUTH_BUTTON);
         loginElement.click();
 
-        File scrFile = ((TakesScreenshot)webClient).getScreenshotAs(OutputType.FILE);
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         // Now you can do whatever you need to do with it, for example copy somewhere
         try {
             FileUtils.copyFile(scrFile, new File("c:\\tmp\\screenshotHTML.png"));
@@ -45,8 +41,7 @@ public class HtmlUnitDriver {
             e.printStackTrace();
         }
 
-        Assert.assertEquals(page.getElementById(String.valueOf(COMPOSE_BUTTON)).getTextContent(), COMPOSE_BUTTON_TEXT);
-        webClient.close();
+        Assert.assertEquals(driver.findElement(COMPOSE_BUTTON).getText(), COMPOSE_BUTTON_TEXT);
     }
 
 }
