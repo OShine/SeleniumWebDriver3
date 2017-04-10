@@ -18,20 +18,9 @@
             <version>3.0.1</version>
         </dependency>
         <dependency>
-            <groupId>net.sourceforge.htmlunit</groupId>
-            <artifactId>htmlunit</artifactId>
-            <version>2.26</version>
-        </dependency>
-        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-htmlunit-driver</artifactId>
-            <version>2.52.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>htmlunit-driver</artifactId>
-            <version>2.21</version>
-            <scope>test</scope>
+            <artifactId>selenium-firefox-driver</artifactId>
+            <version>3.0.1</version>
         </dependency>
         <dependency>
             <groupId>com.codeborne</groupId>
