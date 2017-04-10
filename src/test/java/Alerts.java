@@ -40,7 +40,7 @@ public class Alerts {
         simpleJSAlert.click();
 
         Alert simpleAlert = driver.switchTo().alert();
-        Assert.assertTrue(simpleAlert.getText().contains("I am a phantomJS Alert"));
+        Assert.assertTrue(simpleAlert.getText().contains("I am a PhantomJS Alert"));
         Thread.sleep(2000); //This sleep is not necessary, just for demonstration
         simpleAlert.accept();
 
@@ -55,7 +55,7 @@ public class Alerts {
         confirmationJSAlert.click();
 
         Alert confirmationAlert = driver.switchTo().alert();
-        Assert.assertTrue(confirmationAlert.getText().contains("I am a phantomJS Confirm"));
+        Assert.assertTrue(confirmationAlert.getText().contains("I am a PhantomJS Confirm"));
         Thread.sleep(2000); //This sleep is not necessary, just for demonstration
         confirmationAlert.dismiss();
 
@@ -70,7 +70,7 @@ public class Alerts {
         promptJSAlert.click();
 
         Alert promptAlert = driver.switchTo().alert();
-        Assert.assertTrue(promptAlert.getText().contains("I am a phantomJS prompt"));
+        Assert.assertTrue(promptAlert.getText().contains("I am a PhantomJS prompt"));
         promptAlert.sendKeys("Accepting the alert");
         Thread.sleep(2000); //This sleep is not necessary, just for demonstration
         promptAlert.accept();
