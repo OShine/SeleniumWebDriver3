@@ -26,7 +26,6 @@ public class HeadlessTesting {
         driver = new FirefoxDriver(ffprofile);
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
     }
 
     @Test
@@ -45,14 +44,10 @@ public class HeadlessTesting {
 
         WebElement signElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".sign-out-span")));
         Assert.assertTrue(signElement.getText().contains("Sign Out"));
-
     }
 
     @AfterMethod
-    public void afterMethod() {
-
+    public void tearDown() {
         driver.quit();
-
     }
-
 }
