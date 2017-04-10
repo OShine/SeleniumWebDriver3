@@ -34,7 +34,7 @@ public class Main {
 
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void main() throws InterruptedException {
 
         driver.get(baseUrl);
